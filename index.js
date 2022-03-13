@@ -8,11 +8,16 @@ import fetch from 'node-fetch';
 
 try {
   (async () => {
-    const feed = await parser.parseURL("https://feeds.rebuild.fm/rebuildfm");
-    core.setOutput("title", feed.title);
+    // const feed = await parser.parseURL("https://feeds.rebuild.fm/rebuildfm");
+    // core.setOutput("title", feed.title);
     const response = await fetch("https://feeds.rebuild.fm/rebuildfm");
     const rss = await response.text();
     core.setOutput("rss", rss);
+    const feed2 = await parser.parseString(rss);
+    // , (err, feed) => {
+    //   core.setOutput("title", feed.title + feed.items.length);
+    // })
+    core.setOutput("title", feed2.title + feed2.items.length);
     // feed.items.forEach(item => {
     //   core.setOutput(item.title + ':' + item.link + ':' + item.guid);
     // });

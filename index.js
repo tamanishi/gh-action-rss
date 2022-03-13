@@ -14,7 +14,7 @@ try {
     const feed = await parser.parseString(body);
     core.setOutput("title", feed.title + feed.items.length);
 
-    fs.writeFileSync("./feed", feed);
+    fs.writeFileSync("./feed", body);
 
     // download previous text
     // parse previous text

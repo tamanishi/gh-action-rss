@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: "check feed"
         id: "check"
-        uses: tamanishi/gh-action-rss@v0.2
+        uses: tamanishi/gh-action-rss@v0.3
       - name: "print title"
         run: echo "title was ${{ steps.check.outputs.title }}"
       - name: "print rss"

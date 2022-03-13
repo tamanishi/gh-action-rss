@@ -8,6 +8,8 @@ inputs:
 outputs:
   title: # id of output
     description: 'The time we greeted you'
+  rss:
+    description: 'rss content'
 runs:
   using: 'node12'
   main: 'index.js'

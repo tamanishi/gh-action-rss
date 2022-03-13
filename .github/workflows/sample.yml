@@ -1,0 +1,19 @@
+name: Sample
+
+on:
+  push: {branches: main}
+  pull_request: {branches: main}
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    name: Greeting
+    steps:
+      - name: "check feed"
+        id: "check"
+        uses: tamanishi/gh-action-rss@v0.1
+      - name: "print title"
+        run: echo "title was ${{ steps.check.outputs.title }}"
+      - name: "print rss"
+        run: echo "rss was ${{ steps.check.outputs.rss }}"
+      # - run: npm run start

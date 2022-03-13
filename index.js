@@ -1,9 +1,9 @@
 import core from '@actions/core';
-const github = require('@actions/github');
-const artifact = require('@actions/artifact');
+import github from '@actions/github';
+import artifact from '@actions/artifact';
 const artifactClient = artifact.create();
-const rss_parser = require('rss-parser');
-const parser = new rss_parser();
+import Parser from 'rss-parser';
+const parser = new Parser();
 import fetch from 'node-fetch';
 
 try {

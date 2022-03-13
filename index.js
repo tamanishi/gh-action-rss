@@ -4,7 +4,7 @@ const artifact = require('@actions/artifact');
 const artifactClient = artifact.create();
 const rss_parser = require('rss-parser');
 const parser = new rss_parser();
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 try {
   (async () => {

@@ -5,19 +5,25 @@ const artifactClient = artifact.create();
 import Parser from 'rss-parser';
 const parser = new Parser();
 import fetch from 'node-fetch';
+import fs from 'fs';
 
 try {
   (async () => {
-    // const feed = await parser.parseURL("https://feeds.rebuild.fm/rebuildfm");
-    // core.setOutput("title", feed.title);
     const response = await fetch("https://feeds.rebuild.fm/rebuildfm");
-    const rss = await response.text();
-    core.setOutput("rss", rss);
-    const feed2 = await parser.parseString(rss);
-    // , (err, feed) => {
-    //   core.setOutput("title", feed.title + feed.items.length);
-    // })
-    core.setOutput("title", feed2.title + feed2.items.length);
+    const body = await response.text();
+    const feed = await parser.parseString(body);
+    core.setOutput("title", feed.title + feed.items.length);
+
+    await fs.writeFile("./feed", feed);
+
+    // download previous text
+    // parse previous text
+    // if (previous count deffers from current count) {
+    //   setOutput("result", result);
+    //   TODO: save body text
+    //   ここで保存したファイルを後のstepでcommitする
+    // }
+
     // feed.items.forEach(item => {
     //   core.setOutput(item.title + ':' + item.link + ':' + item.guid);
     // });

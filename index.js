@@ -4,8 +4,6 @@ const parser = new Parser();
 import fetch from 'node-fetch';
 import fs from 'fs';
 
-const DEFAULT_RESULT = "NOT_UPDATED";
-
 try {
   (async () => {
     const response = await fetch("https://feeds.rebuild.fm/rebuildfm");
@@ -22,15 +20,15 @@ try {
 
     }
 
-    let result = DEFAULT_RESULT;
+    let result = "not updated";
     if (prevCnt !== currCnt) {
       fs.writeFileSync("./rss.xml", currBody);
-      result = "UPDATED";
+      result = "updated";
     }
     core.setOutput("result", result);
 
   })();
 } catch (error) {
   core.setFailed(error.message);
-  core.setOutput("result", DEFAULT_RESULT);
+  core.setOutput("result", "not updated");
 }

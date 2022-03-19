@@ -27,10 +27,10 @@ try {
       fs.writeFileSync("./rss.xml", currBody);
       result = "UPDATED";
     }
-    core.setOutput(result);
+    core.setOutput("result", result);
 
   })();
 } catch (error) {
   core.setFailed(error.message);
-  core.setOutput(DEFAULT_RESULT);
+  core.setOutput("result", DEFAULT_RESULT);
 }

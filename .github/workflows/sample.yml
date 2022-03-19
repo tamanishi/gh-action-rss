@@ -20,6 +20,7 @@ jobs:
           git config user.name "Masayuki Sunahara"
           git config user.email tamanishi@gmail.com
           git commit -m "update episodes"
+          git push origin main
       - name: "head rss"
         run: head -n 10 ./rss.xml
       - name: "tail rss"

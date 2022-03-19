@@ -15,6 +15,7 @@ jobs:
         id: "check"
         uses: tamanishi/gh-action-rss@v0.11
       - name: "commit rss"
+        if: steps.check.conclusion == 'UPDATED'
         run: |
           git add ./rss.xml
           git config user.name "Masayuki Sunahara"

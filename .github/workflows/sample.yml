@@ -3,17 +3,24 @@ name: Sample
 on:
   push: {branches: main}
   pull_request: {branches: main}
+  workflow_dispatch:
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     name: Greeting
     steps:
-      - name: "check feed"
+      - uses: actions/checkout@v3
+      - name: "check rss"
         id: "check"
-        uses: tamanishi/gh-action-rss@v0.3
-      - name: "print title"
-        run: echo "title was ${{ steps.check.outputs.title }}"
-      - name: "print rss"
-        run: echo "rss was ${{ steps.check.outputs.rss }}"
-      # - run: npm run start
+        uses: tamanishi/gh-action-rss@v0.11
+      - name: "commit rss"
+        run: |
+          git add ./rss.xml
+          git config user.name "Masayuki Sunahara"
+          git config user.email tamanishi@gmail.com
+          git commit -m "update episodes"
+      - name: "head rss"
+        run: head -n 10 ./rss.xml
+      - name: "tail rss"
+        run: tail -n 10 ./rss.xml
